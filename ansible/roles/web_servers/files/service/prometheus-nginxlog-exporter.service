@@ -1,8 +1,11 @@
 [Unit]
 Description=NGINX metrics exporter for Prometheus
+Alias=nginxlog_exporter
 After=network-online.target
 
 [Service]
+User=monitoring
+Group=monitoring
 ExecStart=/usr/sbin/prometheus-nginxlog-exporter -config-file /etc/prometheus-nginxlog-exporter.hcl
 Restart=always
 ProtectSystem=full

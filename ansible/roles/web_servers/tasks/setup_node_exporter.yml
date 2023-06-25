@@ -1,0 +1,36 @@
+---
+- name: Check is node_exporter already installed
+  ansible.builtin.stat:
+    path: '/etc/systemd/system/multi-user.target.wants/{{ node_exporter.service }}'
+  register: node_exporter_service
+
+- name: Get and unarchive node_exporter
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ node_exporter.url }}"
+    dest: '/tmp/'
+  when: not node_exporter_service.stat.exists
+
+- name: Copy node_exporter bin
+  ansible.builtin.copy:
+    remote_src: true
+    src: "/tmp/{{ node_exporter.dir_name }}/node_exporter"
+    dest: '/usr/local/bin/node_exporter'
+    owner: monitoring
+    mode: '755'
+  when: not node_exporter_service.stat.exists
+
+- name: Copy service
+  ansible.builtin.copy:
+    src: 'service/node_exporter.service'
+    dest: '/usr/lib/systemd/system/{{ node_exporter.service }}'
+    mode: '755'
+  notify: Systemd daemon reload
+  register: copy_service
+
+- name: Make symlink to service
+  ansible.builtin.file:
+    path: '/etc/systemd/system/multi-user.target.wants/{{ node_exporter.service }}'
+    src: "{{ copy_service.dest }}"
+    state: link
+  notify: Systemd daemon reload

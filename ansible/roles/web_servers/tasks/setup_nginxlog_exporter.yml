@@ -1,0 +1,12 @@
+---
+- name: Check is nginxlog_exporter already installed
+  ansible.builtin.stat:
+    path: '/etc/systemd/system/multi-user.target.wants/{{ nginxlog_exporter.service }}'
+  register: nginxlog_exporter_service
+
+- name: Install nginxlog-exporter
+  ansible.builtin.dnf:
+    name: "{{ nginxlog_exporter.url }}"
+    state: present
+    disable_gpg_check: true
+  when: not nginxlog_exporter_service.stat.exists

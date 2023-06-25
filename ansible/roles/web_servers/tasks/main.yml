@@ -1,0 +1,48 @@
+---
+# tasks file for web_servers
+- name: Install NGINX
+  ansible.builtin.include_tasks:
+    file: setup_nginx.yml
+
+- name: Add group
+  ansible.builtin.group:
+    name: monitoring
+    state: present
+    system: true
+
+- name: Add user
+  ansible.builtin.user:
+    name: monitoring
+    group: monitoring
+    create_home: false
+    system: true
+    state: present
+
+- name: Install node_exporter
+  ansible.builtin.include_tasks:
+    file: setup_node_exporter.yml
+
+- name: Install nginxlog_exporter
+  ansible.builtin.include_tasks:
+    file: setup_nginxlog_exporter.yml
+
+- name: Open firewalld ports
+  ansible.posix.firewalld:
+    port: "{{ item }}"
+    state: enabled
+    immediate: true
+    permanent: true
+  loop:
+    - '{{ nginx.port }}/tcp'
+    - '{{ node_exporter.port }}/tcp'
+    - '{{ nginxlog_exporter.port }}/tcp'
+
+- name: Start and enable services
+  ansible.builtin.systemd:
+    service: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - '{{ nginx.service }}'
+    - '{{ node_exporter.service }}'
+    - '{{ nginxlog_exporter.service }}'

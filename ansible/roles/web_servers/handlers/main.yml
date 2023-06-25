@@ -1,0 +1,10 @@
+---
+# handlers file for web_servers
+- name: Systemd daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Restart nginx
+  ansible.builtin.systemd:
+    service: nginx
+    state: restarted
