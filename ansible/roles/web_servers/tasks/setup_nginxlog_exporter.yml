@@ -1,7 +1,7 @@
 ---
 - name: Check is nginxlog_exporter already installed
   ansible.builtin.stat:
-    path: '/etc/systemd/system/multi-user.target.wants/{{ nginxlog_exporter.service }}'
+    path: '/etc/systemd/system/prometheus-nginxlog-exporter.service'
   register: nginxlog_exporter_service
 
 - name: Install nginxlog-exporter

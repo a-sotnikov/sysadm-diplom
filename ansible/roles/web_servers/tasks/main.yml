@@ -43,6 +43,6 @@
     state: started
     enabled: true
   loop:
-    - '{{ nginx.service }}'
-    - '{{ node_exporter.service }}'
-    - '{{ nginxlog_exporter.service }}'
+    - 'nginx'
+    - 'node_exporter'
+    - 'prometheus-nginxlog-exporter'

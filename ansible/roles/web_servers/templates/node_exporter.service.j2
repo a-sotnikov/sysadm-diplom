@@ -1,0 +1,23 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Prometheus Node Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User=prometheus
+Group=prometheus
+ExecStart={{ node_exporter.binary_dir }}/node_exporter \
+    '--web.listen-address=0.0.0.0:{{ node_exporter.port }}' \
+    '--web.telemetry-path=/metrics'
+
+SyslogIdentifier=node_exporter
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

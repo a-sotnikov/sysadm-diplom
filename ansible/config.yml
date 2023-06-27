@@ -1,14 +1,31 @@
+system:
+  platform: 'amd64'
+
 node_exporter:
-  url: 'https://github.com/prometheus/node_exporter/releases/download/v1.6.0/node_exporter-1.6.0.linux-amd64.tar.gz'
-  dir_name: node_exporter-1.6.0.linux-amd64
-  service: node_exporter.service
+  version: '1.6.0'
+  repo: 'prometheus/node_exporter'
+  url: 'https://github.com/{{ repo }}/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-{{ system.platform }}.tar.gz'
+  unarchive_dir: node_exporter-{{ version }}.linux-{{ system.platform }}
   port: 9100
+  binary_dir: '/usr/local/bin/'
 
 nginxlog_exporter:
-  url: 'https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v1.9.2/prometheus-nginxlog-exporter_1.9.2_linux_amd64.rpm'
-  service: prometheus-nginxlog-exporter.service
+  version: '1.9.2'
+  repo: 'martin-helmich/prometheus-nginxlog-exporter'
+  url: 'https://github.com/{{ repo }}/releases/download/v{{ version }}/prometheus-nginxlog-exporter_{{ version }}_linux_{{ system.platform }}.rpm'
   port: 4040
 
 nginx:
   service: nginx.service
   port: 80
+
+prometheus:
+  version: '2.42.0'
+  repo: 'prometheus/prometheus'
+  url: 'https://github.com/{{ repo }}/releases/download/v{{ version }}/prometheus-{{ version }}.linux-{{ system.platform }}.tar.gz'
+  port: 9090
+  config_dir: '/etc/prometheus'
+  binary_dir: '/usr/local/bin'
+  db_dir: '/var/lib/prometheus'
+  unarchive_dir: 'prometheus-{{ version }}.linux-{{ system.platform }}'
+
