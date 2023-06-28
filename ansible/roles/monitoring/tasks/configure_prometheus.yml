@@ -1,0 +1,10 @@
+---
+- name: Copy prometheus config file
+  ansible.builtin.template:
+    src: 'prometheus.yml.j2'
+    dest: '{{ prometheus.config_dir }}'
+    force: true
+    owner: root
+    group: prometheus
+    mode: '640'
+  notify: Prometheus restart

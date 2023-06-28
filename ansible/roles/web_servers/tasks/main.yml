@@ -4,28 +4,6 @@
   ansible.builtin.include_tasks:
     file: setup_nginx.yml
 
-- name: Add group
-  ansible.builtin.group:
-    name: monitoring
-    state: present
-    system: true
-
-- name: Add user
-  ansible.builtin.user:
-    name: monitoring
-    group: monitoring
-    create_home: false
-    system: true
-    state: present
-
-- name: Install node_exporter
-  ansible.builtin.include_tasks:
-    file: setup_node_exporter.yml
-
-- name: Install nginxlog_exporter
-  ansible.builtin.include_tasks:
-    file: setup_nginxlog_exporter.yml
-
 - name: Open firewalld ports
   ansible.posix.firewalld:
     port: "{{ item }}"

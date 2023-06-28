@@ -1,0 +1,11 @@
+---
+# handlers file for monitoring
+- name: Systemd daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Restart prometheus
+  ansible.builtin.systemd:
+    service: nginx
+    enabled: true
+    state: restarted
