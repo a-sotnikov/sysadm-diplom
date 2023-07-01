@@ -4,8 +4,14 @@
   ansible.builtin.systemd:
     daemon_reload: true
 
-- name: Restart prometheus
+- name: Prometheus restart
   ansible.builtin.systemd:
     service: nginx
+    enabled: true
+    state: restarted
+
+- name: Prometheus-nginxlog-exporter restart
+  ansible.builtin.systemd:
+    service: prometheus-nginxlog-exporter
     enabled: true
     state: restarted

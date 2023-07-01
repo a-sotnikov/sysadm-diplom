@@ -19,15 +19,18 @@
 
 - name: Install node_exporter
   ansible.builtin.include_tasks:
-    file: setup_node_exporter.yml
+    file: install_node_exporter.yml
+  when: not node_exporter.skip_install
 
-- name: Install nginxlog_exporter
+- name: Install prometheus-nginxlog-exporter
   ansible.builtin.include_tasks:
-    file: setup_nginxlog_exporter.yml
+    file: install_prometheus-nginxlog-exporter.yml
+  when: not prometheus-nginxlog-exporter.skip_install
 
 - name: Install prometheus
   ansible.builtin.include_tasks:
     file: install_prometheus.yml
+  when: not prometheus.skip_install
 
 - name: Configure prometheus
   ansible.builtin.include_tasks:

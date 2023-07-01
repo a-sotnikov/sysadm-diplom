@@ -52,7 +52,7 @@
           ansible.builtin.copy:
             remote_src: true
             src: "/tmp/{{ prometheus.unarchive_dir }}/{{ item }}"
-            dest: "{{ prometheus.binary_dir }}/{{ item }}"
+            dest: "{{ system.binary_dir }}/{{ item }}"
             mode: '755'
             owner: root
             group: root

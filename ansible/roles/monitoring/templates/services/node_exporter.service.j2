@@ -8,7 +8,7 @@ After=network-online.target
 Type=simple
 User=prometheus
 Group=prometheus
-ExecStart={{ node_exporter.binary_dir }}/node_exporter \
+ExecStart={{ system.binary_dir }}/node_exporter \
     '--web.listen-address=0.0.0.0:{{ node_exporter.port }}' \
     '--web.telemetry-path=/metrics'
 

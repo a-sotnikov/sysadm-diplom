@@ -75,23 +75,23 @@ Vagrant.configure("2") do |config|
   #   yum install -y nginx
   # SHELL
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
-    ansible.playbook = "../../ansible/playbook.yml"
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.verbose = "v"
+  #   ansible.playbook = "../../ansible/playbook.yml"
+  # end
 
 end
 
-Vagrant.configure("2") do |config|
+# Vagrant.configure("2") do |config|
 
-  config.vm.box = "generic/fedora37"
-  config.vm.define = "monitoring"
+#   config.vm.box = "generic/fedora37"
+#   config.vm.define = "monitoring"
 
-  config.vm.network "public_network"
+#   config.vm.network "public_network"
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
-    ansible.playbook = "../../ansible/monitoring.yml"
-  end
+#   config.vm.provision "ansible" do |ansible|
+#     ansible.verbose = "v"
+#     ansible.playbook = "../../ansible/monitoring.yml"
+#   end
 
-end
+# end

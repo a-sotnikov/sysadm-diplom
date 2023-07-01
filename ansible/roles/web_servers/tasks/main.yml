@@ -1,26 +1,23 @@
 ---
 # tasks file for web_servers
-- name: Install NGINX
-  ansible.builtin.include_tasks:
-    file: setup_nginx.yml
+- name: Update dnf and install nginx
+  ansible.builtin.dnf:
+    update_cache: true
+    name: nginx-{{ nginx.version }}
+    state: present
 
 - name: Open firewalld ports
   ansible.posix.firewalld:
-    port: "{{ item }}"
+    port: "{{ nginx.port }}"
     state: enabled
     immediate: true
     permanent: true
-  loop:
-    - '{{ nginx.port }}/tcp'
-    - '{{ node_exporter.port }}/tcp'
-    - '{{ nginxlog_exporter.port }}/tcp'
 
-- name: Start and enable services
-  ansible.builtin.systemd:
-    service: "{{ item }}"
-    state: started
-    enabled: true
-  loop:
-    - 'nginx'
-    - 'node_exporter'
-    - 'prometheus-nginxlog-exporter'
+- name: Update UI
+  ansible.builtin.copy:
+    src: 'static/'
+    dest: '/usr/share/nginx/html/'
+    owner: nginx
+    mode: '600'
+  notify: Restart nginx
+

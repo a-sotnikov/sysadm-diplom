@@ -1,0 +1,29 @@
+---
+- name: Get and unarchive node_exporter
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ node_exporter.url }}"
+    dest: '/tmp/'
+
+- name: Copy node_exporter bin
+  ansible.builtin.copy:
+    remote_src: true
+    src: '/tmp/{{ node_exporter.unarchive_dir }}/node_exporter'
+    dest: '{{ system.binary_dir }}/node_exporter'
+    owner: prometheus
+    mode: '755'
+
+- name: Open firewalld ports
+  ansible.posix.firewalld:
+    port: "{{ node_exporter.port }}"
+    state: enabled
+    immediate: true
+    permanent: true
+
+- name: Copy service
+  ansible.builtin.template:
+    src: 'services/node_exporter.service.j2'
+    dest: '/etc/systemd/systemd/system/node_exporter.service'
+    mode: '644'
+    force: true
+  notify: Systemd daemon reload

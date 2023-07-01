@@ -1,7 +1,7 @@
 ---
 - name: Copy prometheus config file
   ansible.builtin.template:
-    src: 'prometheus.yml.j2'
+    src: 'configs/prometheus.yml.j2'
     dest: '{{ prometheus.config_dir }}'
     force: true
     owner: root
