@@ -2,9 +2,9 @@
 - name: Copy prometheus-nginxlog-exporter config file
   ansible.builtin.template:
     src: 'configs/prometheus-nginxlog-exporter.yml.j2'
-    dest: '{{ prometheus-nginxlog-exporter.config_dir }}'
+    dest: '{{ nginxlog_exporter.config_dir }}/prometheus-nginxlog-exporter.yml'
     force: true
-    owner: root
+    owner: prometheus
     group: prometheus
-    mode: '640'
-  notify: Prometheus-nginxlog-exporter restart
+    mode: '664'
+  notify: Nginxlog_exporter restart

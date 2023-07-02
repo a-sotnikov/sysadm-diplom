@@ -2,7 +2,7 @@
 # tasks file for web_servers
 - name: Update dnf and install nginx
   ansible.builtin.dnf:
-    update_cache: true
+    # update_cache: true
     name: nginx-{{ nginx.version }}
     state: present
 
@@ -20,4 +20,3 @@
     owner: nginx
     mode: '600'
   notify: Restart nginx
-

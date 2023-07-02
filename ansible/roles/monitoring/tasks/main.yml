@@ -24,8 +24,8 @@
 
 - name: Install prometheus-nginxlog-exporter
   ansible.builtin.include_tasks:
-    file: install_prometheus-nginxlog-exporter.yml
-  when: not prometheus-nginxlog-exporter.skip_install
+    file: install_nginxlog_exporter.yml
+  when: not nginxlog_exporter.skip_install
 
 - name: Install prometheus
   ansible.builtin.include_tasks:
@@ -34,7 +34,7 @@
 
 - name: Configure prometheus-nginxlog-exporter
   ansible.builtin.include_tasks:
-    file: configure_prometheus-nginxlog-exporter.yml
+    file: configure_nginxlog_exporter.yml
 
 - name: Configure prometheus
   ansible.builtin.include_tasks:

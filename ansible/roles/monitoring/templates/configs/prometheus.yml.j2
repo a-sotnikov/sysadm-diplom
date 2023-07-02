@@ -14,6 +14,7 @@ alerting:
         - targets:
           # - alertmanager:9093
 
+
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
   # - "first_rules.yml"
@@ -31,4 +32,4 @@ scrape_configs:
     static_configs:
       - targets:
           - localhost:{{ node_exporter.port }}
-          - localhost:{{ prometheus-nginxlog-exporter.port }}
+          - localhost:{{ nginxlog_exporter.port }}

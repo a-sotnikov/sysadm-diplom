@@ -6,12 +6,18 @@
 
 - name: Prometheus restart
   ansible.builtin.systemd:
-    service: nginx
+    service: prometheus
     enabled: true
     state: restarted
 
-- name: Prometheus-nginxlog-exporter restart
+- name: Nginxlog_exporter restart
   ansible.builtin.systemd:
     service: prometheus-nginxlog-exporter
+    enabled: true
+    state: restarted
+
+- name: Node_exporter restart
+  ansible.builtin.systemd:
+    service: node_exporter
     enabled: true
     state: restarted

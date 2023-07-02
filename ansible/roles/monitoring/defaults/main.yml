@@ -1,2 +1,18 @@
 ---
 # defaults file for monitoring
+_node_exporter:
+  url: |
+    'https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter.version }}/
+    node_exporter-{{ node_exporter.version }}.linux-{{ system.platform }}.tar.gz'
+  unarchive_dir: node_exporter-{{ node_exporter.version }}.linux-{{ system.platform }}
+
+_nginxlog_exporter:
+  url: |
+    'https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v{{ nginxlog_exporter.version }}/
+    prometheus-nginxlog-exporter_{{ nginxlog_exporter.version }}_linux_{{ system.platform }}.tar.gz'
+
+_prometheus:
+  url: |
+    'https://github.com/prometheus/prometheus/releases/download/v{{ prometheus.version }}/
+    prometheus-{{ prometheus.version }}.linux-{{ system.platform }}.tar.gz'
+  unarchive_dir: prometheus-{{ prometheus.version }}.linux-{{ system.platform }}

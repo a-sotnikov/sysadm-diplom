@@ -1,21 +1,28 @@
 ---
+- name: Create nginxlog_exporter configuration directories
+  ansible.builtin.file:
+    path: "{{ nginxlog_exporter.config_dir }}"
+    state: directory
+    owner: prometheus
+    mode: '755'
+
 - name: Get and unarchive prometheus-nginxlog-exporter
   ansible.builtin.unarchive:
     remote_src: true
-    src: "{{ prometheus-nginxlog-exporter.url }}"
+    src: "{{ _nginxlog_exporter.url }}"
     dest: '/tmp/'
 
 - name: Copy prometheus-nginxlog-exporter bin
   ansible.builtin.copy:
     remote_src: true
-    src: '/tmp/{{ prometheus-nginxlog-exporter.unarchive_dir }}/prometheus-nginxlog-exporter'
+    src: '/tmp/prometheus-nginxlog-exporter'
     dest: '{{ system.binary_dir }}/prometheus-nginxlog-exporter'
     owner: prometheus
-    mode: '755'
+    mode: '744'
 
 - name: Open firewalld ports
   ansible.posix.firewalld:
-    port: "{{ prometheus-nginxlog-exporter.port }}/tcp"
+    port: "{{ nginxlog_exporter.port }}/tcp"
     state: enabled
     immediate: true
     permanent: true
@@ -23,7 +30,8 @@
 - name: Copy service
   ansible.builtin.template:
     src: 'services/prometheus-nginxlog-exporter.service.j2'
-    dest: '/etc/systemd/systemd/system/prometheus-nginxlog-exporter.service'
+    dest: '/etc/systemd/system/prometheus-nginxlog-exporter.service'
     mode: '644'
+    owner: root
     force: true
   notify: Systemd daemon reload
