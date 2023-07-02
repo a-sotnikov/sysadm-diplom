@@ -15,7 +15,7 @@
 
 - name: Open firewalld ports
   ansible.posix.firewalld:
-    port: "{{ node_exporter.port }}"
+    port: "{{ node_exporter.port }}/tcp"
     state: enabled
     immediate: true
     permanent: true

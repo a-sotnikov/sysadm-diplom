@@ -43,7 +43,7 @@
 
 - name: Open firewalld ports
   ansible.posix.firewalld:
-    port: "{{ prometheus.port }}"
+    port: "{{ prometheus.port }}/tcp"
     state: enabled
     immediate: true
     permanent: true

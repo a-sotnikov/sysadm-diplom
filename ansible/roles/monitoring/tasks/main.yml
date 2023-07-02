@@ -32,6 +32,10 @@
     file: install_prometheus.yml
   when: not prometheus.skip_install
 
+- name: Configure prometheus-nginxlog-exporter
+  ansible.builtin.include_tasks:
+    file: configure_prometheus-nginxlog-exporter.yml
+
 - name: Configure prometheus
   ansible.builtin.include_tasks:
     file: configure_prometheus.yml

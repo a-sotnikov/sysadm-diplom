@@ -8,7 +8,7 @@
 
 - name: Open firewalld ports
   ansible.posix.firewalld:
-    port: "{{ nginx.port }}"
+    port: "{{ nginx.port }}/tcp"
     state: enabled
     immediate: true
     permanent: true
