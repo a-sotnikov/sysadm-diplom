@@ -14,7 +14,7 @@ nginxlog_exporter:
   config_dir: '/etc/prometheus-nginxlog-exporter'
 
 nginx:
-  service: nginx.service
+  skip_install: false
   version: '1.24.0'
   port: 80
 
@@ -24,3 +24,8 @@ prometheus:
   port: 9090
   config_dir: '/etc/prometheus'
   db_dir: '/var/lib/prometheus'
+
+grafana:
+  skip_install: false
+  version: '10.0.1'
+  port: 3000

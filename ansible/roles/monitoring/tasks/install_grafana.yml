@@ -1,0 +1,13 @@
+---
+- name: Install grafana
+  ansible.builtin.dnf:
+    name: "{{ _grafana.rpm_url }}"
+    state: present
+    disable_gpg_check: true 
+
+- name: Open firewalld ports
+  ansible.posix.firewalld:
+    port: "{{ grafana.port }}/tcp"
+    state: enabled
+    immediate: true
+    permanent: true

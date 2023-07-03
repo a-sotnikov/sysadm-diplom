@@ -32,6 +32,11 @@
     file: install_prometheus.yml
   when: not prometheus.skip_install
 
+- name: Install grafana
+  ansible.builtin.include_tasks:
+    file: install_grafana.yml
+  when: not grafana.skip_install
+
 - name: Configure prometheus-nginxlog-exporter
   ansible.builtin.include_tasks:
     file: configure_nginxlog_exporter.yml
@@ -39,3 +44,7 @@
 - name: Configure prometheus
   ansible.builtin.include_tasks:
     file: configure_prometheus.yml
+
+- name: Configure grafana
+  ansible.builtin.include_tasks:
+    file: configure_grafana.yml

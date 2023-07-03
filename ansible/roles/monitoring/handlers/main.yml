@@ -21,3 +21,9 @@
     service: node_exporter
     enabled: true
     state: restarted
+
+- name: Grafana restart
+  ansible.builtin.systemd:
+    service: grafana-server
+    enabled: true
+    state: restarted
