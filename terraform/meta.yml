@@ -1,0 +1,9 @@
+#cloud-config
+users:
+  - name: serv_acc
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDL8tstYJZkbLDwcKVdh5VKNojrPIWvIKAqe/e7rqUAc3hjRqP+ovMmnj8VkGcQLTaq2umucLBPMbjEAdI/X/1lXl5lxPyQRhY4lVFDMFXVZPXqDp5spUfnlAgG6D7VhVKljo1tcFLLIHI88NqetP41liHo8ZPrd5mOywYjuYDYBKbtsvtXRMpGXjm5RawvX5HZpakdJZfLxK8RdMF2Au4IYgtdJr7mPdNZXxPuxpdD0W0Mm9vxGwY2DrPcx7zvhapBrisw7QvDGOUiOuA+UD7DatFq77i6aSeE0PhwDQpQ/vwReVf040tcv2LvcLZXVRzcKK+p6HGbi4K3PXPl1LOJaQOL/GNdOwl00KNajFZJ2o+l+0iS4hwXcYzADRlWUDHPsJYayDDBwEL5OgJkxlRfinZ7vqBH5053wPBUjOKUnYUVcy1p07eOt4D+ainsoEnYz+tqqOSR0VHq0UKzeekQeb08rf9Pn6vCuXKZGXAGEKyOxT4A5RpP/yJ5QGsCR+U= andy@redmibook
+

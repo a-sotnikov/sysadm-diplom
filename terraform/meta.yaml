@@ -1,7 +1,0 @@
-#cloud-config
-users:
-  - name: adm
-    groups: sudo
-    shell: /bin/bash
-    ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUfIDexHyP1xOwQJ6bk9e6S7cJlfu6vupfoJAYOZrtwUPdkbPcVXPafscXWdCsbP7aFAuxn7Xq6AoTKuPiYavFxTFPjxfNG90J6ORzPNkVW3q3jylKuB/jIgHKkx8DaiGXpRKBcmOBYB2TQxFJPDEa9R17LNYPzxLXF1kkqVEQd4W00feRq3j6SKVamxIJKIHKin10sz86RoATpAOtgqsfHrdVvWcSdi/f+dlIA2WR4fwlxvIDJEvEBivyTBC+y0Ej3sINTuDYWP9FLef28WczXdsi40US/c7lJVXywy9zSNTHJuOaSjVmAPDUHiSMfN7Gzzuv544yG79fjPTq6u5Gs1dLxJ5FmIU6opFT3+52t9Abyfx7lKq/Z0dfBqw3YDmwf19oktIHSYaQp8Za6DVODS/7bAUfqUMWQGzC0r62nOZVVhBHtS1MoFIAN0RxVO1FjT/CZyRateieibQ4Y0S7Qlv5GzkaN6kF5MKo9cAMtO6LjrvDQw89is+SfS+Ryis= andy@redmibook
