@@ -1,0 +1,23 @@
+all:
+  children:
+    webservers:
+      hosts:
+        web1.dip.lom:
+        web2.dip.lom:
+
+    monitoring:
+      hosts:
+        grafana.dip.lom:
+        prometheus.dip.lom:
+
+    logs:
+      hosts:
+        es.dip.lom:
+        kibana.dip.lom:
+
+    filebeat_servers:
+      hosts:
+        webservers:
+  
+  vars:
+    ansible_user: serv_acc

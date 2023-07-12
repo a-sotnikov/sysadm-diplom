@@ -42,3 +42,19 @@ resource "yandex_dns_recordset" "rs4" {
   ttl     = 200
   data    = [yandex_compute_instance.kibana.network_interface.0.ip_address]
 }
+
+resource "yandex_dns_recordset" "rs5" {
+  zone_id = yandex_dns_zone.zone1.id
+  name    = "prometheus.dip.lom."
+  type    = "A"
+  ttl     = 200
+  data    = [yandex_compute_instance.prometheus.network_interface.0.ip_address]
+}
+
+resource "yandex_dns_recordset" "rs6" {
+  zone_id = yandex_dns_zone.zone1.id
+  name    = "grafana.dip.lom."
+  type    = "A"
+  ttl     = 200
+  data    = [yandex_compute_instance.grafana.network_interface.0.ip_address]
+}
