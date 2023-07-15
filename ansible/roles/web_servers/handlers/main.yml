@@ -1,6 +1,0 @@
----
-# handlers file for web_servers
-- name: Restart nginx
-  ansible.builtin.systemd:
-    service: nginx
-    state: restarted
