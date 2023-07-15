@@ -18,6 +18,9 @@ resource "yandex_compute_instance" "prometheus" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-b.id
+    dns_record {
+      fqdn = "prometheus.dip.lom."
+    }
   }
 
   metadata = {
@@ -46,9 +49,29 @@ resource "yandex_compute_instance" "grafana" {
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-b.id
     nat       = true
+    dns_record {
+      fqdn = "grafana.dip.lom."
+    }
   }
 
   metadata = {
     user-data = "${file("./meta.yml")}"
   }
+}
+
+resource "yandex_compute_snapshot_schedule" "monitoring-snapshot" {
+  name = "monitoring-snapshot"
+
+  schedule_policy {
+    expression = "45 21 * * *" # Every day at 21:45
+  }
+
+  snapshot_count = 7  # Maximum snapshots
+
+  snapshot_spec {
+    labels = { target = "monitoring"}
+  }
+
+  disk_ids = [ yandex_compute_instance.prometheus.boot_disk[0].disk_id, yandex_compute_instance.grafana.boot_disk[0].disk_id ]
+
 }
