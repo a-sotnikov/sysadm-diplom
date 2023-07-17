@@ -1,13 +1,9 @@
-data "yandex_compute_image" "container-optimized-image" {
-  family = "container-optimized-image"
-}
-
 resource "yandex_compute_instance" "elasticsearch" {
   name = "elaticsearch"
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.container-optimized-image.id
+      image_id = local.image_id
     }
   }
   network_interface {
@@ -24,7 +20,6 @@ resource "yandex_compute_instance" "elasticsearch" {
       memory = 2
   }
   metadata = {
-      docker-compose = "${file("./config/docker-compose-es.yml")}"
       user-data = "${file("./meta.yml")}"
   }
 }
@@ -34,7 +29,7 @@ resource "yandex_compute_instance" "kibana" {
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.container-optimized-image.id
+      image_id = local.image_id
     }
   }
   network_interface {
@@ -51,7 +46,6 @@ resource "yandex_compute_instance" "kibana" {
       memory = 2
   }
   metadata = {
-      docker-compose = "${file("./config/docker-compose-kibana.yml")}"
       user-data = "${file("./meta.yml")}"
   }
 }
