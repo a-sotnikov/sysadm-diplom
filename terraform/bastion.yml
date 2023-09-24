@@ -24,13 +24,3 @@ write_files:
     defer: true
     encoding: base64
     content: dmF1bHQK
-
-  - path: /home/ansible/.ansible/.ansible.cfg
-    owner: 'ansible:ansible'
-    permissions: '0644'
-    defer: true
-    content: |
-      [defaults]
-      vault_password_file = ./.vault_pass
-      private_key_file = /home/ansible/.ssh/ansible.key
-      log_path = /home/ansible/ansible.log
