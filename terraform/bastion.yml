@@ -6,8 +6,7 @@ packages:
   - ansible
 
 runcmd:
-  - [su, ansible, -c, "git clone https://github.com/a-sotnikov/test_cloud.git /home/ansible/test_cloud/"]
-  - [ansible-playbook, /home/ansible/test_cloud/playbook.yml]
+  - [su, ansible, -c, "git clone https://github.com/a-sotnikov/diplom_ansible.git /home/ansible/diplom/"]
 
 users:
 - name: ansible
