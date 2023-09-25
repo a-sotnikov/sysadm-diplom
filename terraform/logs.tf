@@ -7,13 +7,12 @@ resource "yandex_compute_instance" "elasticsearch" {
     }
   }
   network_interface {
-      subnet_id = yandex_vpc_subnet.subnet-a.id
-      nat       = true
+      subnet_id = yandex_vpc_subnet.private-subnet.id
   dns_record {
     fqdn = "es.dip.lom."
   }
   }
-  zone = yandex_vpc_subnet.subnet-a.zone
+  zone = yandex_vpc_subnet.private-subnet.zone
 
   resources {
       cores = 2
@@ -33,13 +32,13 @@ resource "yandex_compute_instance" "kibana" {
     }
   }
   network_interface {
-      subnet_id = yandex_vpc_subnet.subnet-a.id
+      subnet_id = yandex_vpc_subnet.public-subnet.id
       nat       = true
   dns_record {
     fqdn = "kibana.dip.lom."
   }
   }
-  zone = yandex_vpc_subnet.subnet-a.zone
+  zone = yandex_vpc_subnet.public-subnet.zone
 
   resources {
       cores = 2

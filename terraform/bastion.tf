@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "bh" {
   name = "bastion-host"
 
-  zone = yandex_vpc_subnet.subnet-b.zone
+  zone = yandex_vpc_subnet.public-subnet.zone
 
   resources {
     cores = 2
@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "bh" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-b.id
+    subnet_id = yandex_vpc_subnet.public-subnet.id
     nat       = true
     dns_record {
       fqdn = "bastion.dip.lom."

@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "prometheus" {
   name = "prometheus"
 
-  zone = yandex_vpc_subnet.subnet-b.zone
+  zone = yandex_vpc_subnet.private-subnet.zone
 
   resources {
     cores = 2
@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "prometheus" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-b.id
+    subnet_id = yandex_vpc_subnet.private-subnet.id
     dns_record {
       fqdn = "prometheus.dip.lom."
     }
@@ -31,7 +31,7 @@ resource "yandex_compute_instance" "prometheus" {
 resource "yandex_compute_instance" "grafana" {
   name = "grafana"
 
-  zone = yandex_vpc_subnet.subnet-b.zone
+  zone = yandex_vpc_subnet.public-subnet.zone
 
   resources {
     cores = 2
@@ -47,7 +47,7 @@ resource "yandex_compute_instance" "grafana" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-b.id
+    subnet_id = yandex_vpc_subnet.public-subnet.id
     nat       = true
     dns_record {
       fqdn = "grafana.dip.lom."

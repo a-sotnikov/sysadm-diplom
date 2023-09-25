@@ -59,8 +59,8 @@ resource "yandex_alb_load_balancer" "test-balancer" {
 
   allocation_policy {
     location {
-      zone_id   = yandex_vpc_subnet.subnet-a.zone
-      subnet_id = yandex_vpc_subnet.subnet-a.id
+      zone_id   = yandex_vpc_subnet.public-subnet.zone
+      subnet_id = yandex_vpc_subnet.public-subnet.id
     }
   }
 

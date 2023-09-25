@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "www-1" {
   name = "webserver-1"
 
-  zone = yandex_vpc_subnet.subnet-a.zone
+  zone = "ru-central1-a"
 
   resources {
     cores = 2
@@ -17,8 +17,7 @@ resource "yandex_compute_instance" "www-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-a.id
-    nat       = true
+    subnet_id = yandex_vpc_subnet.private-subnet.id
     dns_record {
       fqdn = "web1.dip.lom."
     }
@@ -32,7 +31,7 @@ resource "yandex_compute_instance" "www-1" {
 resource "yandex_compute_instance" "www-2" {
   name = "webserver-2"
 
-  zone = yandex_vpc_subnet.subnet-b.zone
+  zone = "ru-central1-b"
 
   resources {
     cores = 2
@@ -48,8 +47,7 @@ resource "yandex_compute_instance" "www-2" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-b.id
-    nat       = true
+    subnet_id = yandex_vpc_subnet.private-subnet.id
     dns_record {
       fqdn = "web2.dip.lom."
     }
