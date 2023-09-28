@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "www-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.private-subnet.id
+    subnet_id = yandex_vpc_subnet.private-subnet-a.id
     dns_record {
       fqdn = "web1.dip.lom."
     }
@@ -47,7 +47,7 @@ resource "yandex_compute_instance" "www-2" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.private-subnet.id
+    subnet_id = yandex_vpc_subnet.private-subnet-b.id
     dns_record {
       fqdn = "web2.dip.lom."
     }

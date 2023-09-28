@@ -1,7 +1,7 @@
 resource "yandex_compute_instance" "prometheus" {
   name = "prometheus"
 
-  zone = yandex_vpc_subnet.private-subnet.zone
+  zone = yandex_vpc_subnet.private-subnet-b.zone
 
   resources {
     cores = 2
@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "prometheus" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.private-subnet.id
+    subnet_id = yandex_vpc_subnet.private-subnet-b.id
     dns_record {
       fqdn = "prometheus.dip.lom."
     }

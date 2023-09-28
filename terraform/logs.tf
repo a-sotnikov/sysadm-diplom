@@ -7,12 +7,12 @@ resource "yandex_compute_instance" "elasticsearch" {
     }
   }
   network_interface {
-      subnet_id = yandex_vpc_subnet.private-subnet.id
+      subnet_id = yandex_vpc_subnet.private-subnet-a.id
   dns_record {
     fqdn = "es.dip.lom."
   }
   }
-  zone = yandex_vpc_subnet.private-subnet.zone
+  zone = yandex_vpc_subnet.private-subnet-a.zone
 
   resources {
       cores = 2
