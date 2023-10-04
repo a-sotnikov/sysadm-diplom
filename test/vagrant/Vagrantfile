@@ -75,10 +75,10 @@ Vagrant.configure("2") do |config|
   #   yum install -y nginx
   # SHELL
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
-    ansible.playbook = "../../ansible/playbook.yml"
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.verbose = "v"
+  #   ansible.playbook = "../../ansible/playbook.yml"
+  # end
 
 end
 
