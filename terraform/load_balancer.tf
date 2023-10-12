@@ -53,7 +53,7 @@ resource "yandex_alb_virtual_host" "virtual-host" {
   }
 }    
 
-resource "yandex_alb_load_balancer" "test-balancer" {
+resource "yandex_alb_load_balancer" "l7-balancer" {
   name        = "l7-balancer"
   network_id  = yandex_vpc_network.network-1.id
 
