@@ -48,6 +48,7 @@ resource "yandex_vpc_security_group" "default-sg" {
   ingress {
     description       = "Allow ICMP"
     protocol          = "ICMP"
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 
   egress {
@@ -66,12 +67,14 @@ resource "yandex_vpc_security_group" "web-sg" {
     description       = "Allow HTTPS"
     protocol          = "TCP"
     port              = 443
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 
   ingress {
     description       = "Allow HTTP"
     protocol          = "TCP"
     port              = 80
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 }
 
@@ -82,7 +85,7 @@ resource "yandex_vpc_security_group" "internal-ssh-sg" {
   ingress {
     description       = "Allow SSH"
     protocol          = "TCP"
-    port              = 21
+    port              = 22
     v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
                       yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
                       yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
@@ -96,7 +99,8 @@ resource "yandex_vpc_security_group" "external-ssh-sg" {
   ingress {
     description       = "Allow SSH"
     protocol          = "TCP"
-    port              = 21
+    port              = 22
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 }
 
@@ -108,6 +112,7 @@ resource "yandex_vpc_security_group" "kibana-sg" {
     description       = "Allow 5601"
     protocol          = "TCP"
     port              = 5601
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 }
 resource "yandex_vpc_security_group" "es-sg" {
@@ -118,6 +123,9 @@ resource "yandex_vpc_security_group" "es-sg" {
     description       = "Allow 9200"
     protocol          = "TCP"
     port              = 9200
+    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
   }
 }
 
@@ -129,6 +137,7 @@ resource "yandex_vpc_security_group" "grafana-sg" {
     description       = "Allow 3000"
     protocol          = "TCP"
     port              = 3000
+    v4_cidr_blocks    = ["0.0.0.0/0"]
   }
 }
 
@@ -140,6 +149,9 @@ resource "yandex_vpc_security_group" "prometheus-sg" {
     description       = "Allow 9090"
     protocol          = "TCP"
     port              = 9090
+    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
   }
 }
 
@@ -151,12 +163,18 @@ resource "yandex_vpc_security_group" "metrics-sg" {
     description       = "Allow nginxlog_exporter"
     protocol          = "TCP"
     port              = 4040
+    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
   }
 
     ingress {
     description       = "Allow node_exporter"
     protocol          = "TCP"
     port              = 9100
+    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
   }
 
 }
