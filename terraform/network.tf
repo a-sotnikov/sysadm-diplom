@@ -48,7 +48,6 @@ resource "yandex_vpc_security_group" "default-sg" {
   ingress {
     description       = "Allow ICMP"
     protocol          = "ICMP"
-    port              = 443
   }
 
   egress {
@@ -84,9 +83,9 @@ resource "yandex_vpc_security_group" "internal-ssh-sg" {
     description       = "Allow SSH"
     protocol          = "TCP"
     port              = 21
-    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[*],
-                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[*],
-                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[*]]
+    v4_cidr_blocks = [yandex_vpc_subnet.public-subnet.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-a.v4_cidr_blocks[0],
+                      yandex_vpc_subnet.private-subnet-b.v4_cidr_blocks[0]]
   }
 }
 

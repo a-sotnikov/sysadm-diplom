@@ -19,6 +19,8 @@ resource "yandex_compute_instance" "bh" {
   network_interface {
     subnet_id = yandex_vpc_subnet.public-subnet.id
     nat       = true
+    security_group_ids = [ yandex_vpc_security_group.default-sg.id,
+                            yandex_vpc_security_group.external-ssh-sg.id ]
     dns_record {
       fqdn = "bastion.dip.lom."
     }

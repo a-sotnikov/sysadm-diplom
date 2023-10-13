@@ -8,6 +8,9 @@ resource "yandex_compute_instance" "elasticsearch" {
   }
   network_interface {
       subnet_id = yandex_vpc_subnet.private-subnet-a.id
+      security_group_ids = [ yandex_vpc_security_group.default-sg.id,
+                              yandex_vpc_security_group.internal-ssh-sg.id, 
+                              yandex_vpc_security_group.es-sg.id ]
   dns_record {
     fqdn = "es.dip.lom."
   }
@@ -34,6 +37,9 @@ resource "yandex_compute_instance" "kibana" {
   network_interface {
       subnet_id = yandex_vpc_subnet.public-subnet.id
       nat       = true
+      security_group_ids = [ yandex_vpc_security_group.default-sg.id,
+                              yandex_vpc_security_group.internal-ssh-sg.id, 
+                              yandex_vpc_security_group.kibana-sg.id ]
   dns_record {
     fqdn = "kibana.dip.lom."
   }

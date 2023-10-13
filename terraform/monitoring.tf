@@ -18,6 +18,9 @@ resource "yandex_compute_instance" "prometheus" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.private-subnet-b.id
+    security_group_ids = [ yandex_vpc_security_group.default-sg.id, 
+                            yandex_vpc_security_group.internal-ssh-sg.id, 
+                            yandex_vpc_security_group.prometheus-sg.id ]
     dns_record {
       fqdn = "prometheus.dip.lom."
     }
@@ -49,6 +52,9 @@ resource "yandex_compute_instance" "grafana" {
   network_interface {
     subnet_id = yandex_vpc_subnet.public-subnet.id
     nat       = true
+    security_group_ids = [ yandex_vpc_security_group.default-sg.id,
+                            yandex_vpc_security_group.internal-ssh-sg.id, 
+                            yandex_vpc_security_group.grafana-sg.id ]
     dns_record {
       fqdn = "grafana.dip.lom."
     }
