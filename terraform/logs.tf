@@ -19,7 +19,7 @@ resource "yandex_compute_instance" "elasticsearch" {
 
   resources {
       cores = 2
-      memory = 2
+      memory = 4
   }
   metadata = {
       user-data = "${file("./meta.yml")}"
