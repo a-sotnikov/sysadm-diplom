@@ -1,0 +1,147 @@
+yandex_vpc_network.network-1: Creating...
+yandex_vpc_gateway.nat_gateway: Creating...
+yandex_alb_http_router.tf-router: Creating...
+yandex_alb_http_router.tf-router: Creation complete after 1s [id=ds7gvk2pe3bs9tdm63mg]
+yandex_vpc_gateway.nat_gateway: Creation complete after 1s [id=enpkq104c3kgvei3uafs]
+yandex_vpc_network.network-1: Creation complete after 3s [id=enpdv73fjcu4nn4i00a7]
+yandex_vpc_subnet.public-subnet: Creating...
+yandex_vpc_route_table.nat-instance-route: Creating...
+yandex_vpc_security_group.external-ssh-sg: Creating...
+yandex_vpc_security_group.kibana-sg: Creating...
+yandex_vpc_security_group.grafana-sg: Creating...
+yandex_vpc_security_group.default-sg: Creating...
+yandex_vpc_security_group.web-sg: Creating...
+yandex_vpc_subnet.public-subnet: Creation complete after 1s [id=e9beu75h5rirmg3gcdsh]
+yandex_alb_load_balancer.l7-balancer: Creating...
+yandex_vpc_security_group.external-ssh-sg: Creation complete after 2s [id=enpga6prae30hc9n9juv]
+yandex_vpc_route_table.nat-instance-route: Creation complete after 2s [id=enptqjtlfi31b3i7jqeg]
+yandex_vpc_subnet.private-subnet-b: Creating...
+yandex_vpc_subnet.private-subnet-a: Creating...
+yandex_vpc_subnet.private-subnet-a: Creation complete after 1s [id=e9bs9oflhhjqu4gsuf0a]
+yandex_vpc_security_group.grafana-sg: Creation complete after 4s [id=enp3r554kqd6vuuhflso]
+yandex_vpc_subnet.private-subnet-b: Creation complete after 3s [id=e2lbb7nb5im40dhmb0i4]
+yandex_vpc_security_group.prometheus-sg: Creating...
+yandex_vpc_security_group.es-sg: Creating...
+yandex_vpc_security_group.internal-ssh-sg: Creating...
+yandex_vpc_security_group.metrics-sg: Creating...
+yandex_vpc_security_group.default-sg: Creation complete after 5s [id=enpak4pbl31pevm1pjgr]
+yandex_compute_instance.bh: Creating...
+yandex_vpc_security_group.es-sg: Creation complete after 2s [id=enp5qdnthuafq9b8m8on]
+yandex_vpc_security_group.web-sg: Creation complete after 8s [id=enpk179cliq7l17vilt0]
+yandex_vpc_security_group.kibana-sg: Creation complete after 10s [id=enp7vkbh8qs36qvbff74]
+yandex_alb_load_balancer.l7-balancer: Still creating... [10s elapsed]
+yandex_vpc_security_group.prometheus-sg: Creation complete after 8s [id=enp1g74q8if0ne4ugak0]
+yandex_vpc_security_group.internal-ssh-sg: Creation complete after 9s [id=enpedi2vpbdg9mjsml6n]
+yandex_compute_instance.grafana: Creating...
+yandex_compute_instance.elasticsearch: Creating...
+yandex_compute_instance.kibana: Creating...
+yandex_compute_instance.prometheus: Creating...
+yandex_vpc_security_group.metrics-sg: Still creating... [10s elapsed]
+yandex_compute_instance.bh: Still creating... [10s elapsed]
+yandex_vpc_security_group.metrics-sg: Creation complete after 13s [id=enpkerbdora8m4r9b29d]
+yandex_compute_instance.www-2: Creating...
+yandex_compute_instance.www-1: Creating...
+yandex_alb_load_balancer.l7-balancer: Still creating... [20s elapsed]
+yandex_compute_instance.grafana: Still creating... [10s elapsed]
+yandex_compute_instance.prometheus: Still creating... [10s elapsed]
+yandex_compute_instance.kibana: Still creating... [10s elapsed]
+yandex_compute_instance.elasticsearch: Still creating... [10s elapsed]
+yandex_compute_instance.bh: Still creating... [20s elapsed]
+yandex_compute_instance.www-1: Still creating... [10s elapsed]
+yandex_compute_instance.www-2: Still creating... [10s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [30s elapsed]
+yandex_compute_instance.elasticsearch: Still creating... [20s elapsed]
+yandex_compute_instance.kibana: Still creating... [20s elapsed]
+yandex_compute_instance.grafana: Still creating... [20s elapsed]
+yandex_compute_instance.prometheus: Still creating... [20s elapsed]
+yandex_compute_instance.bh: Still creating... [30s elapsed]
+yandex_compute_instance.www-1: Still creating... [20s elapsed]
+yandex_compute_instance.www-2: Still creating... [20s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [40s elapsed]
+yandex_compute_instance.prometheus: Still creating... [31s elapsed]
+yandex_compute_instance.grafana: Still creating... [31s elapsed]
+yandex_compute_instance.elasticsearch: Still creating... [31s elapsed]
+yandex_compute_instance.kibana: Still creating... [31s elapsed]
+yandex_compute_instance.bh: Still creating... [40s elapsed]
+yandex_compute_instance.www-1: Still creating... [30s elapsed]
+yandex_compute_instance.www-2: Still creating... [30s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [50s elapsed]
+yandex_compute_instance.kibana: Creation complete after 40s [id=fhmsoeg7kiqamspf51te]
+yandex_compute_instance.elasticsearch: Still creating... [41s elapsed]
+yandex_compute_instance.prometheus: Still creating... [41s elapsed]
+yandex_compute_instance.grafana: Still creating... [41s elapsed]
+yandex_compute_instance.grafana: Creation complete after 41s [id=fhmbbdec8joj16eglclr]
+yandex_compute_instance.bh: Still creating... [50s elapsed]
+yandex_compute_instance.www-1: Still creating... [40s elapsed]
+yandex_compute_instance.www-2: Still creating... [40s elapsed]
+yandex_compute_instance.prometheus: Creation complete after 46s [id=epd5oj6vjjfj3todrkn8]
+yandex_compute_snapshot_schedule.monitoring-snapshot: Creating...
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m0s elapsed]
+yandex_compute_instance.www-1: Creation complete after 44s [id=fhmbfmtqprf1ld8jpe88]
+yandex_compute_snapshot_schedule.monitoring-snapshot: Creation complete after 3s [id=fd8u8mm1pa157joh4urq]
+yandex_compute_instance.elasticsearch: Still creating... [51s elapsed]
+yandex_compute_instance.bh: Still creating... [1m0s elapsed]
+yandex_compute_instance.elasticsearch: Creation complete after 52s [id=fhm891fgr2f3ecs94mm5]
+yandex_compute_snapshot_schedule.logs-snapshot: Creating...
+yandex_compute_instance.www-2: Still creating... [50s elapsed]
+yandex_compute_snapshot_schedule.logs-snapshot: Creation complete after 4s [id=fd8hq82j83bqofj4mt9c]
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m10s elapsed]
+yandex_compute_instance.www-2: Creation complete after 54s [id=epdalfk8jd7cv9aem2vl]
+yandex_compute_snapshot_schedule.www-snapshot: Creating...
+yandex_alb_target_group.tg-1: Creating...
+yandex_alb_target_group.tg-1: Creation complete after 0s [id=ds7522gnj3e9mad0c2ge]
+yandex_alb_backend_group.bg-1: Creating...
+yandex_alb_backend_group.bg-1: Creation complete after 1s [id=ds7b4heke5lg1bbup7ms]
+yandex_alb_virtual_host.virtual-host: Creating...
+yandex_compute_instance.bh: Creation complete after 1m9s [id=fhm974usfnhdgui7m6p7]
+yandex_compute_snapshot_schedule.bh-snapshot: Creating...
+yandex_compute_snapshot_schedule.www-snapshot: Creation complete after 2s [id=fd8ga3fth8uf5d39ekig]
+yandex_alb_virtual_host.virtual-host: Creation complete after 2s [id=ds7gvk2pe3bs9tdm63mg/virt-host]
+yandex_compute_snapshot_schedule.bh-snapshot: Creation complete after 2s [id=fd8dc330nd0fh6q0c91e]
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m20s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m30s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m40s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [1m50s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m0s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m10s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m20s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m30s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m40s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [2m50s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m0s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m10s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m20s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m30s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m40s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [3m50s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m1s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m11s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m21s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m31s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m41s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [4m51s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m1s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m11s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m21s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m31s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m41s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [5m51s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [6m1s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [6m11s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [6m21s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [6m31s elapsed]
+yandex_alb_load_balancer.l7-balancer: Still creating... [6m41s elapsed]
+yandex_alb_load_balancer.l7-balancer: Creation complete after 6m42s [id=ds7fihbpq1gf994qug6d]
+
+Apply complete! Resources: 31 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bastion_public_ip = "158.160.55.38"
+grafana_public_ip = "158.160.40.237"
+kibana_public_ip = "62.84.125.92"
+load_balancer = tolist([
+  {
+    "address" = "158.160.130.168"
+  },
+])

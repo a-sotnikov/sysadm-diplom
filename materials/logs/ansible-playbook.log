@@ -1,0 +1,239 @@
+[ansible@fhm974usfnhdgui7m6p7 diplom]$ ansible-playbook playbook.yml  --ask-vault-pass
+Vault password:
+
+PLAY [Decrypt private key] *********************************************************************************************************************************
+
+TASK [Decrypt private key] *********************************************************************************************************************************
+changed: [localhost]
+
+PLAY [Setup webservers] ************************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************************************
+ok: [web1.dip.lom]
+ok: [web2.dip.lom]
+
+TASK [webservers : Update dnf and install nginx] ***********************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [webservers : Update index.html] **********************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [webservers : Update static] **************************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+RUNNING HANDLER [webservers : Restart nginx] ***************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+PLAY [Setup metrics exporters] *****************************************************************************************************************************
+
+TASK [metrics : Add group] *********************************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Add user] **********************************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Install node_exporter] *********************************************************************************************************************
+included: /home/ansible/diplom/roles/metrics/tasks/install_node_exporter.yml for web1.dip.lom, web2.dip.lom
+
+TASK [metrics : Get and unarchive node_exporter] ***********************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Copy node_exporter bin] ********************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Copy service] ******************************************************************************************************************************
+changed: [web2.dip.lom]
+changed: [web1.dip.lom]
+
+TASK [metrics : Install prometheus-nginxlog-exporter] ******************************************************************************************************
+included: /home/ansible/diplom/roles/metrics/tasks/install_nginxlog_exporter.yml for web1.dip.lom, web2.dip.lom
+
+TASK [metrics : Create nginxlog_exporter configuration directories] ****************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Get and unarchive prometheus-nginxlog-exporter] ********************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Copy prometheus-nginxlog-exporter bin] *****************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Copy service] ******************************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [metrics : Configure prometheus-nginxlog-exporter] ****************************************************************************************************
+included: /home/ansible/diplom/roles/metrics/tasks/configure_nginxlog_exporter.yml for web1.dip.lom, web2.dip.lom
+
+TASK [metrics : Copy prometheus-nginxlog-exporter config file] *********************************************************************************************
+changed: [web2.dip.lom]
+changed: [web1.dip.lom]
+
+RUNNING HANDLER [metrics : Systemd daemon reload] **********************************************************************************************************
+ok: [web2.dip.lom]
+ok: [web1.dip.lom]
+
+RUNNING HANDLER [metrics : Nginxlog_exporter restart] ******************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+RUNNING HANDLER [metrics : Node_exporter restart] **********************************************************************************************************
+changed: [web2.dip.lom]
+changed: [web1.dip.lom]
+
+PLAY [Setup grafana] ************************************************************************************************************************************
+
+TASK [grafana : Install grafana] ***************************************************************************************************************************
+included: /home/ansible/diplom/roles/grafana/tasks/install_grafana.yml for grafana.dip.lom
+
+TASK [grafana : Add group] *********************************************************************************************************************************
+changed: [grafana.dip.lom]
+
+TASK [grafana : Add user] **********************************************************************************************************************************
+changed: [grafana.dip.lom]
+
+TASK [grafana : Install grafana] ***************************************************************************************************************************
+changed: [grafana.dip.lom]
+
+TASK [grafana : Configure grafana] *************************************************************************************************************************
+included: /home/ansible/diplom/roles/grafana/tasks/configure_grafana.yml for grafana.dip.lom
+
+TASK [grafana : Grafana restart] ***************************************************************************************************************************
+changed: [grafana.dip.lom]
+
+PLAY [Setup prometheus] ************************************************************************************************************************************
+
+TASK [prometheus : Install prometheus] *********************************************************************************************************************
+included: /home/ansible/diplom/roles/prometheus/tasks/install_prometheus.yml for prometheus.dip.lom
+
+TASK [prometheus : Add group] ******************************************************************************************************************************
+changed: [prometheus.dip.lom]
+
+TASK [prometheus : Add user] *******************************************************************************************************************************
+changed: [prometheus.dip.lom]
+
+TASK [prometheus : Create prometheus configuration directories] ********************************************************************************************
+changed: [prometheus.dip.lom] => (item=/etc/prometheus)
+changed: [prometheus.dip.lom] => (item=/etc/prometheus/rules)
+changed: [prometheus.dip.lom] => (item=/etc/prometheus/file_sd)
+changed: [prometheus.dip.lom] => (item=/var/lib/prometheus)
+
+TASK [prometheus : Get prometheus binaries] ****************************************************************************************************************
+changed: [prometheus.dip.lom]
+
+TASK [prometheus : Install prometheus binaries] ************************************************************************************************************
+changed: [prometheus.dip.lom] => (item=prometheus)
+changed: [prometheus.dip.lom] => (item=promtool)
+
+TASK [prometheus : Install prometheus console templates] ***************************************************************************************************
+changed: [prometheus.dip.lom] => (item=console_libraries)
+changed: [prometheus.dip.lom] => (item=consoles)
+
+TASK [prometheus : Copy prometheus service file] ***********************************************************************************************************
+changed: [prometheus.dip.lom]
+
+TASK [prometheus : Configure prometheus] *******************************************************************************************************************
+included: /home/ansible/diplom/roles/prometheus/tasks/configure_prometheus.yml for prometheus.dip.lom
+
+TASK [prometheus : Copy prometheus config file] ************************************************************************************************************
+changed: [prometheus.dip.lom]
+
+RUNNING HANDLER [prometheus : Systemd daemon reload] *******************************************************************************************************
+ok: [prometheus.dip.lom]
+
+RUNNING HANDLER [prometheus : Prometheus restart] **********************************************************************************************************
+changed: [prometheus.dip.lom]
+
+PLAY [Setup docker for ELK stack] **************************************************************************************************************************
+
+TASK [docker : Install docker] *****************************************************************************************************************************
+included: /home/ansible/diplom/roles/docker/tasks/install_docker.yml for es.dip.lom, kibana.dip.lom
+
+TASK [docker : Install docker repo] ************************************************************************************************************************
+changed: [es.dip.lom]
+changed: [kibana.dip.lom]
+
+TASK [docker : Install docker] *****************************************************************************************************************************
+changed: [kibana.dip.lom]
+changed: [es.dip.lom]
+
+TASK [docker : Add service acc to docker group] ************************************************************************************************************
+changed: [es.dip.lom]
+changed: [kibana.dip.lom]
+
+RUNNING HANDLER [docker : Start docker engine] *************************************************************************************************************
+changed: [kibana.dip.lom]
+changed: [es.dip.lom]
+
+PLAY [Setup elasticsearch] *********************************************************************************************************************************
+
+TASK [elasticsearch : Install elasticsearch] ***************************************************************************************************************
+included: /home/ansible/diplom/roles/elasticsearch/tasks/install_elasticsearch.yml for es.dip.lom
+
+TASK [elasticsearch : Setup es volume] *********************************************************************************************************************
+changed: [es.dip.lom]
+
+TASK [elasticsearch : Create es container] *****************************************************************************************************************
+changed: [es.dip.lom]
+
+RUNNING HANDLER [elasticsearch : Start elasticsearch] ******************************************************************************************************
+changed: [es.dip.lom]
+
+PLAY [Setup kibana] ****************************************************************************************************************************************
+
+TASK [kibana : Install kibana] *****************************************************************************************************************************
+included: /home/ansible/diplom/roles/kibana/tasks/install_kibana.yml for kibana.dip.lom
+
+TASK [kibana : Create kibana container] ********************************************************************************************************************
+changed: [kibana.dip.lom]
+
+RUNNING HANDLER [kibana : Start kibana] ********************************************************************************************************************
+changed: [kibana.dip.lom]
+
+PLAY [Setup fluent-bit] ************************************************************************************************************************************
+
+TASK [fluent-bit : Install fluent-bit] *********************************************************************************************************************
+included: /home/ansible/diplom/roles/fluent-bit/tasks/install_fluent-bit.yml for web1.dip.lom, web2.dip.lom
+
+TASK [fluent-bit : Install fluentbit repo] *****************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [fluent-bit : Install fluentbit] **********************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [fluent-bit : Copy parsers] ***************************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+TASK [fluent-bit : Install fluentbit repo] *****************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+RUNNING HANDLER [fluent-bit : Start fluent-bit] ************************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+RUNNING HANDLER [fluent-bit : Restart fluent-bit] **********************************************************************************************************
+changed: [web1.dip.lom]
+changed: [web2.dip.lom]
+
+PLAY RECAP *************************************************************************************************************************************************
+es.dip.lom                 : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+grafana.dip.lom            : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+kibana.dip.lom             : ok=8    changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+prometheus.dip.lom         : ok=12   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+web1.dip.lom               : ok=33   changed=22   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+web2.dip.lom               : ok=33   changed=22   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
